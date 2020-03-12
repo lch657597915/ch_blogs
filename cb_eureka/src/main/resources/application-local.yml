@@ -1,0 +1,28 @@
+#运行的端口号
+server:
+  port: 9080
+#logback配置，开发模式日志级别为 INFO
+logging:
+  level:
+    root: INFO
+    org.springframework.web: info
+
+# 注册中心配置开始
+eureka:
+  instance:
+    hostname: localhost
+    prefer-ip-address: true
+    leaseRenewalIntervalInSeconds: 5 # 心跳时间，即服务续约间隔时间（缺省为30s）
+    leaseExpirationDurationInSeconds: 10 # 发呆时间，即服务续约到期时间（缺省为90s）
+  client:
+    registerWithEureka: false
+    fetchRegistry: false
+    serviceUrl:
+      defaultZone: http://${spring.security.user.name}:${spring.security.user.password}@${eureka.instance.hostname}:${server.port}/eureka/
+  server:
+    useReadOnlyResponseCache: false
+    waitTimeInMsWhenSyncEmpty: 0
+    enableSelfPreservation: false
+    evictionIntervalTimerInMs: 5000 #eureka server清理无效节点的时间间隔，默认60000毫秒，即60秒
+    peerNodeReadTimeoutMs: 2000
+    # 注册中心配置结束
