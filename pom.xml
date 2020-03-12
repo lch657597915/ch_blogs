@@ -239,10 +239,10 @@
         </profile>
 
         <profile>
-            <!-- 开发环境（开发版本） -->
-            <id>dev</id>
+            <!-- 生产环境 -->
+            <id>online</id>
             <properties>
-                <env>dev</env>
+                <env>online</env>
             </properties>
         </profile>
 
