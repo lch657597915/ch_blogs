@@ -14,6 +14,10 @@
     <packaging>pom</packaging>
     <description>博客的基础组件服务</description>
 
+    <modules>
+        <module>cb_eureka</module>
+    </modules>
+
     <!--配置参数-->
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
