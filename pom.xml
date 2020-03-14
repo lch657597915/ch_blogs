@@ -46,6 +46,10 @@
             <artifactId>logstash-logback-encoder</artifactId>
             <version>4.11</version>
         </dependency>
+    </dependencies>
+
+    <dependencyManagement>
+        <dependencies>
             <!--Spring Boot 测试组件-->
             <dependency>
                 <groupId>org.springframework.boot</groupId>
@@ -194,6 +198,7 @@
 
         </dependencies>
 
+    </dependencyManagement>
 
     <build>
         <plugins>
