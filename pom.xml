@@ -249,7 +249,29 @@
     </profiles>
 
 
+    <repositories>
+        <repository>
+            <id>nexus</id>
+            <url>http://123.56.81.29:8101/repository/maven-releases/</url>
+        </repository>
+        <repository>
+            <id>releases</id>
+            <name>Nexus Snapshot</name>
+            <url>http://123.56.81.29:8101/repository/maven-snapshots/</url>
+        </repository>
+    </repositories>
 
-
+    <distributionManagement>
+        <repository>
+            <id>nexus</id>
+            <name>Nexus Release</name>
+            <url>http://123.56.81.29:8101/repository/maven-releases/</url>
+        </repository>
+        <snapshotRepository>
+            <id>nexus</id>
+            <name>Nexus Snapshot</name>
+            <url>http://123.56.81.29:8101/repository/maven-snapshots/</url>
+        </snapshotRepository>
+    </distributionManagement>
 
 </project>
