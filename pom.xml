@@ -245,9 +245,9 @@
 
         <profile>
             <!-- 生产环境 -->
-            <id>online</id>
+            <id>release</id>
             <properties>
-                <env>online</env>
+                <env>release</env>
             </properties>
         </profile>
 
