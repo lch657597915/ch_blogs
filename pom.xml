@@ -286,17 +286,16 @@
             <id>nexus</id>
             <url>http://39.105.201.62:8081/nexus/content/groups/public/</url>
         </pluginRepository>
-        <snapshotRepository>
+        <pluginRepository>
             <id>releases</id>
             <name>Nexus Release</name>
             <url>http://123.56.81.29:8101/repository/maven-releases/</url>
-        </snapshotRepository>
-        <snapshotRepository>
+        </pluginRepository>
+        <pluginRepository>
             <id>snapshots</id>
             <name>Nexus Snapshot</name>
             <url>http://123.56.81.29:8101/repository/maven-snapshots/</url>
-        </snapshotRepository>
-
+        </pluginRepository>
 
     </pluginRepositories>
 
