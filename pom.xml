@@ -257,26 +257,47 @@
     <repositories>
         <repository>
             <id>nexus</id>
-            <url>http://123.56.81.29:8101/repository/maven-releases/</url>
+            <url>http://123.56.81.29:8101/repository/maven-public/</url>
         </repository>
         <repository>
             <id>releases</id>
+            <url>http://123.56.81.29:8101/repository/maven-releases/</url>
+        </repository>
+        <repository>
+            <id>snapshots</id>
             <name>Nexus Snapshot</name>
             <url>http://123.56.81.29:8101/repository/maven-snapshots/</url>
+        </repository>
+        <repository>
+            <id>sonatype-nexus-staging</id>
+            <name>Sonatype Nexus Staging</name>
+            <url>https://oss.sonatype.org/service/local/staging/deploy/maven2/</url>
+            <releases>
+                <enabled>true</enabled>
+            </releases>
+            <snapshots>
+                <enabled>true</enabled>
+            </snapshots>
         </repository>
     </repositories>
 
-    <distributionManagement>
-        <repository>
+    <pluginRepositories>
+        <pluginRepository>
             <id>nexus</id>
+            <url>http://39.105.201.62:8081/nexus/content/groups/public/</url>
+        </pluginRepository>
+        <snapshotRepository>
+            <id>releases</id>
             <name>Nexus Release</name>
             <url>http://123.56.81.29:8101/repository/maven-releases/</url>
-        </repository>
+        </snapshotRepository>
         <snapshotRepository>
-            <id>nexus</id>
+            <id>snapshots</id>
             <name>Nexus Snapshot</name>
             <url>http://123.56.81.29:8101/repository/maven-snapshots/</url>
         </snapshotRepository>
-    </distributionManagement>
+
+
+    </pluginRepositories>
 
 </project>
