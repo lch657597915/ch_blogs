@@ -1,0 +1,23 @@
+spring:
+  application:
+    name: @pom.artifactId@
+  profiles:
+    active: @env@
+  security:
+    user:
+      name: "admin"
+      password: "admin"
+  cloud:
+    gateway:
+      globalcors:
+        corsConfigurations:
+          '[/**]':
+            allowedOrigins: "*"
+            allowedMethods: "*"
+
+logging:
+  config: classpath:logback/logback-${spring.profiles.active}.xml
+
+path:
+  exclude:
+    - /userService/api/ext
