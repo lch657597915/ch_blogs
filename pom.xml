@@ -17,6 +17,7 @@
     <modules>
         <module>cb_eureka</module>
         <module>cb_gateway</module>
+        <module>cb_monitor_admin</module>
     </modules>
 
     <!--配置参数-->
