@@ -6,7 +6,12 @@ logging:
   level:
     root: INFO
     org.springframework.web: info
-
+spring:
+  # 注册到Admin
+  boot:
+    admin:
+      client:
+        url: http://123.56.81.29:8202
 # 注册中心配置开始
 eureka:
   instance:

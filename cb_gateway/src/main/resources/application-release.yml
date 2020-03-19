@@ -9,6 +9,11 @@ eureka:
     hostname: 123.56.81.29
     port: 8200
 spring:
+  # 注册到Admin
+  boot:
+    admin:
+      client:
+        url: http://123.56.81.29:8202
   #redis
 #  redis:
 #    host: r-2ze1945f8c588344.redis.rds.aliyuncs.com

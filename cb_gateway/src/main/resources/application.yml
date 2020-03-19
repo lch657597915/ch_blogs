@@ -14,7 +14,14 @@ spring:
           '[/**]':
             allowedOrigins: "*"
             allowedMethods: "*"
-
+  management:
+    endpoints:
+      web:
+        exposure:
+          include: "*"
+    endpoint:
+      health:
+        show-details: ALWAYS
 logging:
   config: classpath:logback/logback-${spring.profiles.active}.xml
 

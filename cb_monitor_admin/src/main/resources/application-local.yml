@@ -8,20 +8,7 @@ eureka:
   instance:
     hostname: localhost
     port: 8200
-spring:
-  # 注册到Admin
-  boot:
-    admin:
-      client:
-        url: http://localhost:8769
-  management:
-    endpoints:
-      web:
-        exposure:
-          include: *
-    endpoint:
-      health:
-        show-details: ALWAYS
+
   #redis
 #  redis:
 #    host: 123.57.186.182

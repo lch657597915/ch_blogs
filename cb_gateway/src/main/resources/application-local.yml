@@ -9,6 +9,11 @@ eureka:
     hostname: localhost
     port: 8200
 spring:
+  # 注册到Admin
+  boot:
+    admin:
+      client:
+        url: http://localhost:8202
   #redis
 #  redis:
 #    host: 123.57.186.182

@@ -7,13 +7,6 @@ spring:
     user:
       name: "admin"
       password: "admin"
-  cloud:
-    gateway:
-      globalcors:
-        corsConfigurations:
-          '[/**]':
-            allowedOrigins: "*"
-            allowedMethods: "*"
 
 logging:
   config: classpath:logback/logback-${spring.profiles.active}.xml
