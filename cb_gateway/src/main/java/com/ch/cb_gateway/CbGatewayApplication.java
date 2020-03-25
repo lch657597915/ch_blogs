@@ -1,16 +1,30 @@
 package com.ch.cb_gateway;
 
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
 import org.springframework.cloud.netflix.eureka.EnableEurekaClient;
+import org.springframework.context.ApplicationContext;
 
+/**
+ *
+ * @author lch
+ * @date 2020/3/26
+ */
 @SpringBootApplication
 @EnableEurekaClient
+@Slf4j
 public class CbGatewayApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(CbGatewayApplication.class, args);
+		Class[] obj = { CbGatewayApplication.class };
+		SpringApplication app = new SpringApplication(obj);
+		ApplicationContext context = app.run(args);
+		String[] activeProfiles = context.getEnvironment().getActiveProfiles();
+		for (String activeProfile : activeProfiles) {
+			log.info("启动完毕，当前环境为: " + activeProfile);
+		}
 	}
 
 }
