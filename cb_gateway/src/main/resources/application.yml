@@ -2,12 +2,18 @@ spring:
   application:
     name: @pom.artifactId@
   profiles:
-    #安全管理开始
     active: @env@
   security:
     user:
       name: "admin"
       password: "admin"
+  cloud:
+    gateway:
+      globalcors:
+        corsConfigurations:
+          '[/**]':
+            allowedOrigins: "*"
+            allowedMethods: "*"
   management:
     endpoints:
       web:
@@ -18,3 +24,7 @@ spring:
         show-details: ALWAYS
 logging:
   config: classpath:logback/logback-${spring.profiles.active}.xml
+
+path:
+  exclude:
+    - /userService/api/ext

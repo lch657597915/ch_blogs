@@ -16,6 +16,8 @@
 
     <modules>
         <module>cb_eureka</module>
+        <module>cb_gateway</module>
+        <module>cb_monitor_admin</module>
     </modules>
 
     <!--配置参数-->
@@ -255,6 +257,7 @@
 
 
     <repositories>
+
         <repository>
             <id>nexus</id>
             <url>http://123.56.81.29:8101/repository/maven-public/</url>
@@ -280,6 +283,35 @@
             </snapshots>
         </repository>
     </repositories>
+
+<!--    <distributionManagement>-->
+<!--        <repository>-->
+<!--            <id>nexus</id>-->
+<!--            <name>Nexus</name>-->
+<!--            <url>http://123.56.81.29:8101/repository/maven-public/</url>-->
+<!--        </repository>-->
+<!--        <repository>-->
+<!--            <id>releases</id>-->
+<!--            <name>Nexus releases</name>-->
+<!--            <url>http://123.56.81.29:8101/repository/maven-releases/</url>-->
+<!--        </repository>-->
+<!--        <snapshotRepository>-->
+<!--            <id>snapshots</id>-->
+<!--            <name>Nexus Snapshot</name>-->
+<!--            <url>http://123.56.81.29:8101/repository/maven-snapshots/</url>-->
+<!--        </snapshotRepository>-->
+<!--        <repository>-->
+<!--            <id>sonatype-nexus-staging</id>-->
+<!--            <name>Sonatype Nexus Staging</name>-->
+<!--            <url>https://oss.sonatype.org/service/local/staging/deploy/maven2/</url>-->
+<!--&lt;!&ndash;            <releases>&ndash;&gt;-->
+<!--&lt;!&ndash;                <enabled>true</enabled>&ndash;&gt;-->
+<!--&lt;!&ndash;            </releases>&ndash;&gt;-->
+<!--&lt;!&ndash;            <snapshots>&ndash;&gt;-->
+<!--&lt;!&ndash;                <enabled>true</enabled>&ndash;&gt;-->
+<!--&lt;!&ndash;            </snapshots>&ndash;&gt;-->
+<!--        </repository>-->
+<!--    </distributionManagement>-->
 
     <pluginRepositories>
         <pluginRepository>
