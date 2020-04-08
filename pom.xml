@@ -8,9 +8,9 @@
         <version>2.1.3.RELEASE</version>
     </parent>
     <groupId>com.ch</groupId>
-    <artifactId>cb_base</artifactId>
+    <artifactId>ch_blogs</artifactId>
     <version>1.0.0</version>
-    <name>cb_base</name>
+    <name>ch_blogs</name>
     <packaging>pom</packaging>
     <description>博客的基础组件服务</description>
 
