@@ -1,0 +1,14 @@
+spring:
+  application:
+    name: @pom.artifactId@
+  profiles:
+    active: @env@
+  security:
+    user:
+      name: "admin"
+      password: "admin"
+
+logging:
+  config: classpath:logback/logback-${spring.profiles.active}.xml
+
+

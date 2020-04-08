@@ -1,0 +1,26 @@
+server:
+  port: 8220
+logging:
+  level:
+    root: INFO
+    org.springframework.web: info
+eureka:
+  instance:
+    hostname: 123.56.81.29
+    port: 8200
+spring:
+  #redis
+#  redis:
+#    host: r-2ze1945f8c588344.redis.rds.aliyuncs.com
+#    port: 6379
+#    timeout: 3000ms
+#    database: 20
+#    password: jkhhRedis120HLW
+#    jedis:
+#      pool:
+#        max-active: 500
+#        max-idle: 100
+#        min-idle: 50
+#        max-wait: -1ms
+
+
