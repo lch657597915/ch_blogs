@@ -13,9 +13,6 @@
     <packaging>jar</packaging>
     <description>服务监控中心</description>
 
-    <properties>
-        <java.version>1.8</java.version>
-    </properties>
 
     <dependencies>
 <!--        <dependency>-->
@@ -37,16 +34,14 @@
             <groupId>de.codecentric</groupId>
             <artifactId>spring-boot-admin-starter-server</artifactId>
         </dependency>
-        <!--热部署配置-->
         <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-devtools</artifactId>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
         </dependency>
-
     </dependencies>
 
     <build>
-        <finalName>${name}</finalName>
+        <finalName>${project.name}</finalName>
         <plugins>
             <plugin>
                 <groupId>org.springframework.boot</groupId>
