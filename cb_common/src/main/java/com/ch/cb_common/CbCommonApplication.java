@@ -1,23 +1,15 @@
-package com.ch.cb_gateway;
+package com.ch.cb_common;
 
-import lombok.extern.slf4j.Slf4j;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.cloud.netflix.eureka.EnableEurekaClient;
 import org.springframework.context.ApplicationContext;
 
-/**
- *
- * @author lch
- * @date 2020/3/26
- */
 @SpringBootApplication
-@EnableEurekaClient
-@Slf4j
-public class CbGatewayApplication {
+@s
+public class CbCommonApplication {
 
 	public static void main(String[] args) {
-		Class[] obj = { CbGatewayApplication.class };
+		Class[] obj = { CbCommonApplication.class };
 		SpringApplication app = new SpringApplication(obj);
 		ApplicationContext context = app.run(args);
 		String[] activeProfiles = context.getEnvironment().getActiveProfiles();
