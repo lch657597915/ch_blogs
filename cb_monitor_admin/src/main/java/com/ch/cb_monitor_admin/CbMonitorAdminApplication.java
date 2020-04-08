@@ -17,6 +17,7 @@ public class CbMonitorAdminApplication {
 	public static void main(String[] args) {
 
 		SpringApplication.run(CbMonitorAdminApplication.class, args);
+
 	}
 
 }
