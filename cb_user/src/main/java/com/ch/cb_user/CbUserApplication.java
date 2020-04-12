@@ -12,9 +12,8 @@ import tk.mybatis.spring.annotation.MapperScan;
 
 @EnableFeignClients
 @EnableDiscoveryClient
-@MapperScan({"com.ch.cb_user.mapper"})
 @SpringBootApplication
-@ComponentScan(basePackages = {"com.ch"})
+@ComponentScan(basePackages = {"com.ch.cb_user","com.ch.cb_common"})
 @Slf4j
 public class CbUserApplication {
 

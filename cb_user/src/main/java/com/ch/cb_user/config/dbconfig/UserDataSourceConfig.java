@@ -20,7 +20,7 @@ import javax.sql.DataSource;
 
 
 @Configuration
-@MapperScan(basePackages = {"com.ch.cb_user.mapper","com.ch.cb_common.core.mybatis"}, sqlSessionTemplateRef = "userSqlSessionTemplate")
+@MapperScan(basePackages = {"com.ch.cb_user.mapper"}, sqlSessionTemplateRef = "userSqlSessionTemplate")
 public class UserDataSourceConfig {
 
 

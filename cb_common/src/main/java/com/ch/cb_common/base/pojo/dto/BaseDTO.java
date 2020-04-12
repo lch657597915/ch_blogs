@@ -10,7 +10,6 @@ import java.io.Serializable;
  * @author lch
  * @date 2020/4/12
  */
-@FieldNameConstants
 @Data
 public class BaseDTO implements Serializable {
 }

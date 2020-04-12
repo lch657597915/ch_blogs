@@ -1,10 +1,10 @@
 server:
-  port: 8220
+  port: 8221
 logging:
   level:
     root: INFO
     com.ch.cb_user.mapper: debug
-    org.springframework.web: info
+    org.springframework.web: debug
     io.swagger.models.parameters.AbstractSerializableParameter: error
 eureka:
   instance:

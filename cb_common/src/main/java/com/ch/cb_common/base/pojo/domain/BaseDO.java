@@ -33,7 +33,6 @@ public class BaseDO implements Serializable {
     /**
      * 创建时间
      */
-    @Column(insertable = false)
     protected LocalDateTime createTime;
     /**
      * 更新人ID
@@ -46,6 +45,5 @@ public class BaseDO implements Serializable {
     /**
      * 更新时间
      */
-    @Column(insertable = false)
     protected LocalDateTime updateTime;
 }

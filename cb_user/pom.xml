@@ -55,12 +55,12 @@
         </dependency>
 
 
-        <!--分布式锁-->
-        <dependency>
-            <groupId>com.jkhh</groupId>
-            <artifactId>redisson-spring-boot-starter</artifactId>
-            <version>0.0.5</version>
-        </dependency>
+<!--        &lt;!&ndash;分布式锁&ndash;&gt;-->
+<!--        <dependency>-->
+<!--            <groupId>com.jkhh</groupId>-->
+<!--            <artifactId>redisson-spring-boot-starter</artifactId>-->
+<!--            <version>0.0.5</version>-->
+<!--        </dependency>-->
 
         <dependency>
             <groupId>org.jsoup</groupId>
