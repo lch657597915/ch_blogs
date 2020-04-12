@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.jkhh.provider.mapper.st.permission.StPermissionHospitalMapper">
+    <select id="listPermissionHospital" resultType="com.jkhh.provider.pojo.vo.st.permission.ListStPermissionHospitalVO">
+    select h.id,h.name,(select count(1) from st_user u where u.st_org_son_hospital_id=h.id and st_status=1) as joinUserCount from st_permission_hospital h
+    where h.delete_flag=0 and h.org_id=#{orgId} order by h.sort asc
+  </select>
+</mapper>

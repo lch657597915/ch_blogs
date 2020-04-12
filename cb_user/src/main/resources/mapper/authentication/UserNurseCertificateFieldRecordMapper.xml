@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.jkhh.provider.mapper.authentication.certificate.UserNurseCertificateFieldRecordMapper">
+
+  <sql id="Base_Column_List">
+    id, user_nurse_certificate_id, code, `name`, `value`, sort, create_id, create_name,
+    create_time, update_id, update_name, update_time
+  </sql>
+  <insert id="saveUserNurseCertificateFieldRecord" parameterType="com.jkhh.provider.pojo.domain.authentication.certificate.UserNurseCertificateFieldRecord">
+    INSERT INTO user_nurse_certificate_field_record (<include refid="Base_Column_List" />)
+    SELECT <include refid="Base_Column_List" /> FROM user_nurse_certificate_field
+    WHERE user_nurse_certificate_id = #{userNurseCertificateId,jdbcType=BIGINT}
+  </insert>
+  <delete id="deleteUserNurseCertificateField" parameterType="com.jkhh.provider.pojo.domain.authentication.certificate.UserNurseCertificateFieldRecord">
+    DELETE FROM user_nurse_certificate_field WHERE user_nurse_certificate_id = #{userNurseCertificateId,jdbcType=BIGINT}
+  </delete>
+</mapper>

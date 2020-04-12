@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.jkhh.provider.mapper.authentication.certificate.UserNurseCertificateImageRecordMapper">
+  <resultMap id="BaseResultMap" type="com.jkhh.provider.pojo.domain.authentication.certificate.UserNurseCertificateImageRecord">
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="user_nurse_certificate_id" jdbcType="BIGINT" property="userNurseCertificateId" />
+    <result column="certificate_template_image_id" jdbcType="BIGINT" property="certificateTemplateImageId" />
+    <result column="image_url" jdbcType="VARCHAR" property="imageUrl" />
+    <result column="image_info" jdbcType="VARCHAR" property="imageInfo" />
+    <result column="sort" jdbcType="INTEGER" property="sort" />
+    <result column="create_id" jdbcType="BIGINT" property="createId" />
+    <result column="create_name" jdbcType="VARCHAR" property="createName" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="update_id" jdbcType="BIGINT" property="updateId" />
+    <result column="update_name" jdbcType="VARCHAR" property="updateName" />
+    <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, user_nurse_certificate_id, template_image_url, image_url, image_info, sort, create_id, create_name,
+    create_time, update_id, update_name, update_time
+  </sql>
+  <insert id="saveUserNurseCertificateImageRecord" parameterType="com.jkhh.provider.pojo.domain.authentication.certificate.UserNurseCertificateImageRecord">
+    INSERT INTO user_nurse_certificate_image_record (<include refid="Base_Column_List" />)
+    SELECT <include refid="Base_Column_List" /> FROM user_nurse_certificate_image
+    WHERE user_nurse_certificate_id = #{userNurseCertificateId,jdbcType=BIGINT}
+  </insert>
+  <delete id="deleteUserNurseCertificateImage" parameterType="com.jkhh.provider.pojo.domain.authentication.certificate.UserNurseCertificateImageRecord">
+    DELETE FROM user_nurse_certificate_image WHERE user_nurse_certificate_id = #{userNurseCertificateId,jdbcType=BIGINT}
+  </delete>
+</mapper>

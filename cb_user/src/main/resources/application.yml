@@ -1,14 +1,27 @@
 spring:
   application:
     name: @pom.artifactId@
-  profiles:
-    active: @env@
   security:
     user:
       name: "admin"
       password: "admin"
-
+  profiles:
+    active: @env@
 logging:
   config: classpath:logback/logback-${spring.profiles.active}.xml
-
-
+mybatis:
+  typeAliasesPackage: com.jkhh.provider.pojo.domain, com.jkhh.provider.pojo.vo
+  mapper-locations: classpath*:mapper/**/*.xml
+  configuration:
+    map-underscore-to-camel-case: true
+    #开启二级缓存，默认是false
+    cache-enabled: true
+    #lazyLoadingEnabled:延迟加载启动，默认是false
+    lazy-loading-enabled: true
+    #aggressiveLazyLoading：积极的懒加载，false的话按需加载，默认是true
+    aggressive-lazy-loading: false
+mapper:
+  notEmpty: true
+  identity: mysql
+  mappers:
+    - tk.mybatis.mapper.common.Mapper

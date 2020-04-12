@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.jkhh.provider.mapper.authentication.certificate.UserNurseCertificateMapper">
+    <!--  获取护士认证列表-->
+    <select id="listUserNurseCertificate"
+            parameterType="com.jkhh.provider.pojo.dto.authentication.certificate.ListUserNurseCertificateDTO"
+            resultType="com.jkhh.provider.pojo.vo.authentication.certificate.ListUserNurseCertificateVO">
+        SELECT
+        unc.id,
+        un.`name`,
+        un.phone,
+        unc.certificate_type,
+        unc.certificate_name,
+        unc.audit_time,
+        unc.audit_status
+        FROM user_nurse_certificate unc
+        LEFT JOIN user_nurse un ON unc.user_nurse_id = un.id
+        <where>
+            <if test="namePhone != null and namePhone != ''">
+                AND (
+                un.`name` LIKE CONCAT('%', #{namePhone}, '%')
+                OR
+                un.phone LIKE CONCAT('%', #{namePhone}, '%')
+                )
+            </if>
+            <if test="certificateType != null">
+                AND unc.certificate_type = #{certificateType}
+            </if>
+            <if test="certificateName != null and certificateName != ''">
+                AND unc.certificate_name = #{certificateName}
+            </if>
+            <if test="auditStatus != null">
+                AND unc.audit_status = #{auditStatus}
+            </if>
+            <if test="startTime != null and endTime !=null ">
+                AND unc.create_time between  #{startTime,jdbcType=TIMESTAMP} and #{endTime,jdbcType=TIMESTAMP}
+            </if>
+        </where>
+        ORDER BY unc.update_time DESC
+    </select>
+    <!--  获取护士实名认证或未认证列表-->
+    <select id="listUserNurseCertificateByPage" parameterType="java.lang.Integer"
+            resultType="com.jkhh.provider.pojo.vo.user.nurse.ListUserNurseClientVO">
+        SELECT
+        unc.id,
+        un.`name`,
+        un.phone
+        FROM user_nurse un
+        LEFT JOIN user_nurse_certificate unc ON unc.user_nurse_id = un.id
+        <where>
+            <choose>
+                <when test="certificateFlag != null and certificateFlag == 1">
+                    AND unc.audit_status = 1
+                </when>
+                <otherwise>
+                    unc.id is null or unc.audit_status != 1
+                </otherwise>
+            </choose>
+        </where>
+    </select>
+</mapper>

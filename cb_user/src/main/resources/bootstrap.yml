@@ -1,12 +1,8 @@
-spring :
-  cloud:
-
-
 management:
   endpoints:
     web:
       exposure:
-        include: "*"  #<2>
+        include: "*"
   endpoint:
     health:
       show-details: ALWAYS
@@ -17,13 +13,28 @@ eureka:
       enabled: true
     service-url:
       defaultZone: http://${spring.security.user.name}:${spring.security.user.password}@${eureka.instance.hostname}:${eureka.instance.port}/eureka/
-    #eureka client 获取注册信息列表并缓存到本地，之后只会增量获取信息，获取注册信息的操作是一个异步任务，默认每隔30秒执行一次
-    registryFetchIntervalSeconds: 5
+    registryFetchIntervalSeconds: 5 #eureka client 获取注册信息列表并缓存到本地，之后只会增量获取信息，获取注册信息的操作是一个异步任务，默认每隔30秒执行一次
   instance:
     prefer-ip-address: true
     instance-id: ${spring.cloud.client.ip-address}:${server.port}
     leaseRenewalIntervalInSeconds: 5 # 心跳时间，即服务续约间隔时间（缺省为30s）
     leaseExpirationDurationInSeconds: 10 # 发呆时间，即服务续约到期时间（缺省为90s）
+
+hystrix:
+  command:
+    default:
+      execution:
+        timeout:
+          enabled: false
+        isolation:
+          strategy: SEMAPHORE
+
+feign:
+  client:
+    config:
+      default:
+        connectTimeout: 15000
+        readTimeout: 15000
 
 ribbon:
   ReadTimeout: 3000

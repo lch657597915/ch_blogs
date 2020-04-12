@@ -3,25 +3,22 @@ server:
 logging:
   level:
     root: INFO
+    com.ch.cb_user.mapper: debug
     org.springframework.web: info
+    io.swagger.models.parameters.AbstractSerializableParameter: error
 eureka:
   instance:
     hostname: localhost
     port: 8200
-
-  #redis
-#  redis:
-#    host: 123.57.186.182
-#    port: 3187
-#    timeout: 3000ms
-#    database: 1
-#    password: jkhh120HlwQAZ
-#    jedis:
-#      pool:
-#        max-active: 8
-#        max-idle: 8
-#        min-idle: 0
-#        max-wait: -1ms
-
-
-
+swagger:
+  enable: true
+  rpc-package-scan: true
+spring:
+  datasource:
+    user:
+      jdbc-url: jdbc:mysql://rm-2ze48v5j1x8f6f400.mysql.rds.aliyuncs.com:3306/cb_user?useUnicode=true&characterEncoding=utf-8&autoReconnect=true&useSSL=false
+      username: lch
+      password: aA657597915
+      driver-class-name: com.mysql.jdbc.Driver
+      # 使用druid数据源
+      type: com.alibaba.druid.pool.DruidDataSource

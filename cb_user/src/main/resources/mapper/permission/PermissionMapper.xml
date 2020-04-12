@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.jkhh.provider.mapper.permission.PermissionMapper">
+    <!--查询用户拥有所有权限(部门权限、部门角色权限、用户权限、用户角色权限)-->
+    <select id="listManagerAllPermission"
+            parameterType="com.jkhh.provider.pojo.dto.permission.permission.ListManagerAllPermissionDTO"
+            resultType="com.jkhh.provider.pojo.vo.permission.permission.ListManagerAllPermissionVO">
+        select distinct p.url,p.code from
+        (
+        select dp.permission_id from base_department_permission_relation dp
+        left join base_manager m on m.department_id=dp.department_id where m.id=#{managerId,jdbcType=BIGINT}
+        union
+        select rp.permission_id from base_department_role_relation dr
+        left join base_role_permission_relation rp on dr.role_id=rp.role_id
+        left join base_manager m on m.department_id=dr.department_id where m.id=#{managerId,jdbcType=BIGINT}
+        union
+        select m.permission_id from base_manager_permission_relation m where m.manager_id=#{managerId,jdbcType=BIGINT}
+        union
+        select rp.permission_id from base_manager_role_relation mr
+        left join base_role_permission_relation rp on rp.role_id=mr.role_id
+        where mr.manager_id=#{managerId,jdbcType=BIGINT}
+        ) as permission_ids
+        left join base_permission p on p.id=permission_ids.permission_id
+    </select>
+    <!--拥有试题分配/知识点分配权限的用户列表-->
+    <select id="listManagerDistribution"
+            parameterType="com.jkhh.provider.pojo.dto.permission.permission.ListManagerDistributionDTO"
+            resultType="com.jkhh.provider.pojo.vo.permission.permission.ListManagerDistributionVO">
+        select distinct id as managerId,name from
+        (
+        select m.id,m.name from base_department_permission_relation dpr
+        left join base_department d on dpr.department_id=d.id
+        left join base_manager m on m.department_id=d.id where dpr.permission_id=#{permissionDistributionId,jdbcType=BIGINT}
+        union
+        select m.id,m.name from base_department_role_relation dpr
+        left join base_role_permission_relation rp on dpr.role_id=rp.role_id
+        left join base_manager m on m.department_id=dpr.department_id where
+        rp.permission_id=#{permissionDistributionId,jdbcType=BIGINT}
+        union
+        select m.id,m.name from base_manager_permission_relation mp
+        left join base_manager m on m.id=mp.manager_id where mp.permission_id=#{permissionDistributionId,jdbcType=BIGINT}
+        union
+        select m.id,m.name from base_manager_role_relation mr
+        left join base_role_permission_relation rp on mr.role_id=rp.role_id
+        left join base_manager m on m.id=mr.manager_id where rp.permission_id=#{permissionDistributionId,jdbcType=BIGINT}
+        union
+        select m.id,m.name from base_manager m where m.id=#{adminUserId,jdbcType=BIGINT}
+        ) as t order by name asc
+    </select>
+
+    <!--拥有视频审核平台权限的用户列表-->
+    <select id="listVideoPlatformUser"
+            parameterType="com.jkhh.provider.pojo.dto.permission.permission.ListManagerDistributionDTO"
+            resultType="com.jkhh.provider.pojo.vo.permission.permission.ListManagerDistributionVO">
+        SELECT m.id as managerId,m.name FROM `base_manager` m where m.`department_id` = #{permissionDistributionId,jdbcType=BIGINT} order by name asc
+    </select>
+
+    <!--拥有外部试题审核角色的所有人列表-->
+    <select id="listExaminationDistribution"
+            parameterType="com.jkhh.provider.pojo.dto.permission.permission.ListManagerDistributionDTO"
+            resultType="com.jkhh.provider.pojo.vo.permission.permission.ListManagerDistributionVO">
+        select m.id as managerId,m.name from base_manager m left join base_manager_role_relation mrr on m.id=mrr.manager_id where mrr.role_id=#{permissionDistributionId,jdbcType=BIGINT} order by m.name asc
+    </select>
+
+    <select id="outsideManager"
+            parameterType="com.jkhh.provider.pojo.dto.permission.permission.OutsideDepartmentDTO"
+            resultType="java.lang.Integer">
+        select count(1) from base_department d
+        left join base_manager m on m.department_id=d.id
+        where d.id=#{outsideDepartmentId,jdbcType=BIGINT} and m.id=#{managerUserId,jdbcType=BIGINT}
+    </select>
+</mapper>

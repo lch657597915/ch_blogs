@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.jkhh.provider.mapper.user.nurse.UserNurseAppInfoMapper" >
+
+<!--    根据userId获取设备友盟token-->
+    <select id="getTokenByUserIdList" resultType="java.lang.String" parameterType="java.util.List">
+        SELECT ui.device_token from user_nurse u
+        left join user_nurse_app_info ui ON u.phone = ui.phone
+        WHERE u.id IN
+        <foreach collection="list" close=")" index="index" item="id" open="(" separator=",">
+            #{id}
+        </foreach>
+    </select>
+</mapper>

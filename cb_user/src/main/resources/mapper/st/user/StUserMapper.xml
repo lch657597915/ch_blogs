@@ -1,0 +1,412 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.jkhh.provider.mapper.st.user.StUserMapper">
+
+  <select id="orgStUserList" parameterType="com.jkhh.provider.pojo.dto.st.user.ListStUserDTO" resultType="com.jkhh.provider.pojo.vo.st.user.ListStUserVO">
+    SELECT
+        un.id,
+        un.`name`,
+        un.phone,
+        un.sex,
+        un.birthday,
+        un.identity_card,
+        un.title_name,
+        un.degree_name,
+        un.work_time,
+        un.update_name,
+        stu.register_time
+    FROM
+        st_user stu
+        LEFT JOIN user_nurse un ON stu.user_nurse_id = un.id
+        LEFT JOIN st_organization so ON stu.st_organization_id = so.id
+    <where>
+      <if test="phoneName != null and phoneName.trim() != ''">
+          AND (
+          un.phone LIKE concat('%',#{phoneName},'%')
+          or
+          un.`name` LIKE concat('%',#{phoneName},'%')
+          )
+      </if>
+      <if test="identityCard != null and identityCard.trim() != ''">
+        AND un.identity_card LIKE concat('%',#{identityCard},'%')
+      </if>
+      <if test="sex != null">
+        AND un.sex = #{sex}
+      </if>
+      <if test="degreeCode != null">
+        AND un.degree_code = #{degreeCode}
+      </if>
+      <if test="titleCode != null">
+        AND un.title_code = #{titleCode}
+      </if>
+      <if test="updateId != null">
+        AND un.update_id = #{updateId}
+      </if>
+      <if test="organizationId != null">
+        AND stu.st_organization_id = #{organizationId}
+      </if>
+      <if test="reviewedStatus != null">
+        AND stu.st_status = #{reviewedStatus}
+      </if>
+      <if test="registerTimeStart != null and registerTimeEnd != null">
+        AND stu.register_time BETWEEN #{registerTimeStart} AND #{registerTimeEnd}
+      </if>
+    </where>
+     order by stu.register_time DESC
+  </select>
+    <select id="sonOrgStUserList" parameterType="com.jkhh.provider.pojo.dto.st.user.ListStUserDTO" resultType="com.jkhh.provider.pojo.vo.st.user.ListStUserVO">
+        SELECT
+        un.id,
+        un.`name`,
+        un.phone,
+        un.sex,
+        un.birthday,
+        un.identity_card,
+        un.title_name,
+        un.degree_name,
+        un.work_time,
+        un.update_name,
+        stu.register_time
+        FROM
+        st_user stu
+        LEFT JOIN user_nurse un ON stu.user_nurse_id = un.id
+        LEFT JOIN st_organization so ON stu.st_organization_id = so.id
+        <where>
+            <if test="phoneName != null and phoneName.trim() != ''">
+                AND (
+                un.phone LIKE concat('%',#{phoneName},'%')
+                or
+                un.`name` LIKE concat('%',#{phoneName},'%')
+                )
+            </if>
+            <if test="identityCard != null and identityCard.trim() != ''">
+                AND un.identity_card LIKE concat('%',#{identityCard},'%')
+            </if>
+            <if test="sex != null">
+                AND un.sex = #{sex}
+            </if>
+            <if test="degreeCode != null">
+                AND un.degree_code = #{degreeCode}
+            </if>
+            <if test="titleCode != null">
+                AND un.title_code = #{titleCode}
+            </if>
+            <if test="updateId != null">
+                AND un.update_id = #{updateId}
+            </if>
+            <if test="hospitalId != null">
+                AND stu.st_org_son_hospital_id = #{hospitalId}
+            </if>
+            <if test="reviewedStatus != null">
+                AND stu.st_status = #{reviewedStatus}
+            </if>
+            <if test="registerTimeStart != null and registerTimeEnd != null">
+                AND stu.register_time BETWEEN #{registerTimeStart} AND #{registerTimeEnd}
+            </if>
+        </where>
+        order by stu.register_time DESC
+    </select>
+
+    <select id="stUserOrgPayList" parameterType="com.jkhh.provider.pojo.dto.st.user.ListStUserOrgPayDTO" resultType="com.jkhh.provider.pojo.vo.st.user.ListStUserOrgPayVO">
+        SELECT
+        stu.id,
+        un.`name`,
+        un.phone,
+        un.sex,
+        un.birthday,
+        un.identity_card,
+        un.title_name,
+        un.degree_name,
+        un.work_time,
+        un.update_name,
+        stu.register_time,
+        stu.st_status as reviewedStatus,
+        sph.`name` as stHospitalName,
+        sph.id as stHospitalId
+        FROM
+        st_user stu
+        LEFT JOIN user_nurse un ON stu.user_nurse_id = un.id
+        LEFT JOIN st_user_reviewed sur ON sur.st_user_id = stu.id
+        LEFT JOIN st_permission_hospital sph ON sph.id = stu.st_org_son_hospital_id
+        LEFT JOIN st_organization so ON stu.st_organization_id = so.id
+        <where>
+            <if test="payType != null ">
+                AND so.pay_type = #{payType}
+            </if>
+            <if test="phoneName != null and phoneName.trim() != ''">
+                AND (
+                un.phone LIKE concat('%',#{phoneName},'%')
+                or
+                un.`name` LIKE concat('%',#{phoneName},'%')
+                )
+            </if>
+            <if test="identityCard != null and identityCard.trim() != ''">
+                AND un.identity_card LIKE concat('%',#{identityCard},'%')
+            </if>
+            <if test="sex != null">
+                AND un.sex = #{sex}
+            </if>
+            <if test="degreeCode != null">
+                AND un.degree_code = #{degreeCode}
+            </if>
+            <if test="titleCode != null">
+                AND un.title_code = #{titleCode}
+            </if>
+            <if test="updateId != null">
+                AND un.update_id = #{updateId}
+            </if>
+            <if test="organizationId != null">
+                AND stu.st_organization_id = #{organizationId}
+            </if>
+            <if test="registerTimeStart != null and registerTimeEnd != null">
+                AND stu.register_time BETWEEN #{registerTimeStart} AND #{registerTimeEnd}
+            </if>
+            <if test="reviewedStatus != null">
+                AND stu.st_status = #{reviewedStatus}
+            </if>
+        </where>
+        order by stu.register_time DESC
+    </select>
+
+    <select id="stUserSonOrgPayList" parameterType="com.jkhh.provider.pojo.dto.st.user.ListStUserOrgPayDTO" resultType="com.jkhh.provider.pojo.vo.st.user.ListStUserOrgPayVO">
+        SELECT
+        stu.id,
+        un.`name`,
+        un.phone,
+        un.sex,
+        un.birthday,
+        un.identity_card,
+        un.title_name,
+        un.degree_name,
+        un.work_time,
+        un.update_name,
+        stu.register_time,
+        stu.st_status as reviewedStatus,
+        sph.`name` as stHospitalName,
+        sph.id as stHospitalId
+        FROM
+        st_user stu
+        LEFT JOIN user_nurse un ON stu.user_nurse_id = un.id
+        LEFT JOIN st_user_reviewed sur ON sur.st_user_id = stu.id
+        LEFT JOIN st_permission_hospital sph ON sph.id = stu.st_org_son_hospital_id
+        LEFT JOIN st_organization so ON stu.st_organization_id = so.id
+        <where>
+            <if test="payType != null ">
+                AND so.pay_type = #{payType}
+            </if>
+            <if test="phoneName != null and phoneName.trim() != ''">
+                AND (
+                un.phone LIKE concat('%',#{phoneName},'%')
+                or
+                un.`name` LIKE concat('%',#{phoneName},'%')
+                )
+            </if>
+            <if test="identityCard != null and identityCard.trim() != ''">
+                AND un.identity_card LIKE concat('%',#{identityCard},'%')
+            </if>
+            <if test="sex != null">
+                AND un.sex = #{sex}
+            </if>
+            <if test="degreeCode != null">
+                AND un.degree_code = #{degreeCode}
+            </if>
+            <if test="titleCode != null">
+                AND un.title_code = #{titleCode}
+            </if>
+            <if test="updateId != null">
+                AND un.update_id = #{updateId}
+            </if>
+            <if test="hospitalId != null">
+                AND stu.st_org_son_hospital_id = #{hospitalId}
+            </if>
+            <if test="registerTimeStart != null and registerTimeEnd != null">
+                AND stu.register_time BETWEEN #{registerTimeStart} AND #{registerTimeEnd}
+            </if>
+            <if test="reviewedStatus != null">
+                AND stu.st_status = #{reviewedStatus}
+            </if>
+        </where>
+        order by stu.register_time DESC
+    </select>
+
+    <select id="getStUserInfoDetail" parameterType="com.jkhh.provider.pojo.dto.st.user.StUserIdDTO" resultType="com.jkhh.provider.pojo.vo.st.user.StUserBaseVO">
+        SELECT
+        un.id,
+        un.`name`,
+        un.phone,
+        un.sex,
+        un.birthday,
+        un.identity_card,
+        un.title_name,
+        un.degree_name,
+        un.work_time,
+        un.update_name,
+        stu.register_time
+        FROM
+        st_user stu
+        LEFT JOIN user_nurse un ON stu.user_nurse_id = un.id
+        where
+            stu.user_nurse_id = #{userId}
+            and
+            stu.st_organization_id = #{organizationId}
+    </select>
+
+    <select id="getRpcStOrgUserDetailByUserIds" parameterType="com.jkhh.provider.pojo.dto.st.user.RpcStUserIdsDTO" resultType="com.jkhh.provider.pojo.vo.st.user.StUserBaseVO">
+        SELECT
+        un.id,
+        un.`name`,
+        un.phone,
+        un.sex,
+        un.birthday,
+        un.identity_card,
+        un.title_name,
+        un.degree_name,
+        un.work_time,
+        un.update_name,
+        stu.register_time
+        FROM
+        st_user stu
+        LEFT JOIN user_nurse un ON stu.user_nurse_id = un.id
+        <where>
+            <if test="userIdList != null and userIdList.size > 0">
+                AND stu.user_nurse_id IN
+                <foreach collection="userIdList" item="id" index="index" separator="," open="(" close=")">
+                    #{id}
+                </foreach>
+            </if>
+            <if test="organizationId != null">
+                AND stu.st_organization_id = #{organizationId}
+            </if>
+        </where>
+    </select>
+
+    <select id="getRpcStSonOrgUserDetailByUserIds" parameterType="com.jkhh.provider.pojo.dto.st.user.RpcStUserIdsDTO" resultType="com.jkhh.provider.pojo.vo.st.user.StUserBaseVO">
+        SELECT
+        un.id,
+        un.`name`,
+        un.phone,
+        un.sex,
+        un.birthday,
+        un.identity_card,
+        un.title_name,
+        un.degree_name,
+        un.work_time,
+        un.update_name,
+        stu.register_time
+        FROM
+        st_user stu
+        LEFT JOIN user_nurse un ON stu.user_nurse_id = un.id
+        <where>
+            <if test="userIdList != null and userIdList.size > 0">
+                AND stu.user_nurse_id IN
+                <foreach collection="userIdList" item="id" index="index" separator="," open="(" close=")">
+                    #{id}
+                </foreach>
+            </if>
+            <if test="organizationId != null">
+                AND stu.st_org_son_hospital_id = #{organizationId}
+            </if>
+        </where>
+    </select>
+
+    <select id="getRpcStOrgUserDetailByCondition" parameterType="com.jkhh.provider.pojo.dto.st.user.RpcStUserBaseDTO" resultType="com.jkhh.provider.pojo.vo.st.user.StUserBaseVO">
+        SELECT
+        un.id,
+        un.`name`,
+        un.phone,
+        un.sex,
+        un.birthday,
+        un.identity_card,
+        un.title_name,
+        un.degree_name,
+        un.work_time,
+        un.update_name,
+        stu.register_time
+        FROM
+        st_user stu
+        LEFT JOIN user_nurse un ON stu.user_nurse_id = un.id
+        <where>
+            <if test="phoneName != null and phoneName.trim() != ''">
+                AND (
+                un.phone LIKE concat('%',#{phoneName},'%')
+                or
+                un.`name` LIKE concat('%',#{phoneName},'%')
+                )
+            </if>
+            <if test="sex != null">
+                AND un.sex = #{sex}
+            </if>
+            <if test="organizationId != null">
+                AND stu.st_organization_id = #{organizationId}
+            </if>
+            <if test="stStatus != null">
+                AND stu.st_status = #{stStatus}
+            </if>
+        </where>
+    </select>
+
+    <select id="getRpcStSonOrgUserDetailByCondition" parameterType="com.jkhh.provider.pojo.dto.st.user.RpcStUserBaseDTO" resultType="com.jkhh.provider.pojo.vo.st.user.StUserBaseVO">
+        SELECT
+        un.id,
+        un.`name`,
+        un.phone,
+        un.sex,
+        un.birthday,
+        un.identity_card,
+        un.title_name,
+        un.degree_name,
+        un.work_time,
+        un.update_name,
+        stu.register_time
+        FROM
+        st_user stu
+        LEFT JOIN user_nurse un ON stu.user_nurse_id = un.id
+        <where>
+            <if test="phoneName != null and phoneName.trim() != ''">
+                AND (
+                un.phone LIKE concat('%',#{phoneName},'%')
+                or
+                un.`name` LIKE concat('%',#{phoneName},'%')
+                )
+            </if>
+            <if test="sex != null">
+                AND un.sex = #{sex}
+            </if>
+            <if test="hospitalId != null">
+                AND stu.st_org_son_hospital_id = #{hospitalId}
+            </if>
+            <if test="stStatus != null">
+                AND stu.st_status = #{stStatus}
+            </if>
+        </where>
+    </select>
+
+    <!-- 获取学员报名时间线性图 -->
+    <select id="getSignUpCylinderList" resultType="com.jkhh.provider.pojo.vo.st.user.StUsersSignUpCylinderVO">
+        select count(user_nurse_id) as userSignUpCount,date_format( register_time, '%Y-%m-%d' ) as dayStr from st_user
+        where
+        register_time &gt;= #{startTime}
+        AND register_time &lt;= #{endTime}
+        AND st_organization_id = #{organizationId}
+        AND st_status = 1
+        GROUP BY
+        date_format( register_time, '%Y-%m-%d' )
+    </select>
+
+    <!-- 获取学员报名时间线性图 -->
+    <select id="getSonOrgSignUpCylinderList" resultType="com.jkhh.provider.pojo.vo.st.user.StUsersSignUpCylinderVO">
+        select count(user_nurse_id) as userSignUpCount,date_format( register_time, '%Y-%m-%d' ) as dayStr from st_user
+        where
+        register_time &gt;= #{startTime}
+        AND register_time &lt;= #{endTime}
+        AND st_org_son_hospital_id = #{hospitalId}
+        AND st_status = 1
+        GROUP BY
+        date_format( register_time, '%Y-%m-%d' )
+    </select>
+
+    <update id="removeUserSonHospitalRelation">
+        update st_user set st_org_son_hospital_id=null where st_org_son_hospital_id=#{sonHospitalId}
+    </update>
+
+</mapper>
