@@ -16,9 +16,11 @@
 
     <dependencies>
         <dependency>
-            <groupId>com.ch</groupId>
-            <artifactId>cb_common</artifactId>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-test</artifactId>
+            <scope>test</scope>
         </dependency>
+
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-web</artifactId>
@@ -76,7 +78,10 @@
             <artifactId>okhttp</artifactId>
             <version>3.14.1</version>
         </dependency>
-
+        <dependency>
+            <groupId>com.ch</groupId>
+            <artifactId>cb_common</artifactId>
+        </dependency>
     </dependencies>
 
     <build>

@@ -15,11 +15,11 @@
     <description>博客的基础组件服务</description>
 
     <modules>
-        <module>cb_common</module>
         <module>cb_eureka</module>
         <module>cb_gateway</module>
         <module>cb_monitor_admin</module>
         <module>cb_user</module>
+        <module>cb_common</module>
     </modules>
 
     <!--配置参数-->
