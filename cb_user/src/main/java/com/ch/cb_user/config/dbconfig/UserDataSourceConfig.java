@@ -43,7 +43,7 @@ public class UserDataSourceConfig {
         Resource[] resources = new PathMatchingResourcePatternResolver()
                 .getResources("classpath:mapper/**/*.xml");
         bean.setMapperLocations(resources);
-        bean.setTypeAliasesPackage("com.jkhh.provider.pojo.domain, com.jkhh.provider.pojo.vo");
+        bean.setTypeAliasesPackage("com.ch.cb_user.pojo.domain, com.ch.cb_user.pojo.vo");
         bean.setConfiguration(configuration);
         return bean.getObject();
     }

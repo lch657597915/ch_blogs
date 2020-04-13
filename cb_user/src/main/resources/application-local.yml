@@ -4,7 +4,7 @@ logging:
   level:
     root: INFO
     com.ch.cb_user.mapper: debug
-    org.springframework.web: debug
+    org.springframework.web: info
     io.swagger.models.parameters.AbstractSerializableParameter: error
 eureka:
   instance:
@@ -16,7 +16,7 @@ swagger:
 spring:
   datasource:
     user:
-      jdbc-url: jdbc:mysql://rm-2ze48v5j1x8f6f400.mysql.rds.aliyuncs.com:3306/cb_user?useUnicode=true&characterEncoding=utf-8&autoReconnect=true&useSSL=false
+      jdbc-url: jdbc:mysql://rm-2ze48v5j1x8f6f4000o.mysql.rds.aliyuncs.com:3306/cb_user?useUnicode=true&characterEncoding=utf-8&autoReconnect=true&useSSL=false
       username: lch
       password: aA657597915
       driver-class-name: com.mysql.jdbc.Driver
