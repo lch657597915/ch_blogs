@@ -6,10 +6,10 @@ spring :
           enabled: true
           lowerCaseServiceId: true
       routes:
-        - id: to-service-user
-          uri: lb://PROVIDER-USER
+        - id: user-service
+          uri: lb://CB-USER #转发的地址,写服务名称
           predicates:
-            - Path=/userService/**
+            - Path=/userService/** #判断匹配条件,即地址带有/ribbon/**的请求,会转发至CB_USER
           filters:
             - StripPrefix=1
 

@@ -8,11 +8,15 @@
         <version>1.0.0</version>
     </parent>
     <artifactId>cb_user</artifactId>
+
     <version>1.0.0</version>
     <name>cb_user</name>
     <packaging>jar</packaging>
     <description>用户服务</description>
 
+    <properties>
+        <serviceId>CB-USER</serviceId>
+    </properties>
 
     <dependencies>
         <dependency>

@@ -3,7 +3,7 @@ server:
 logging:
   level:
     root: INFO
-    com.jkhh.provider.mapper: debug
+    com.ch.cb_user.mapper: debug
     org.springframework.web: info
     io.swagger.models.parameters.AbstractSerializableParameter: error
 eureka:
