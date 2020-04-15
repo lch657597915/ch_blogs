@@ -1,4 +1,4 @@
-package com.ch.cb_user.pojo.vo.manager;
+package com.ch.cb_user.pojo.domain.user;
 
 import com.ch.cb_common.base.pojo.domain.BaseDO;
 import io.swagger.annotations.ApiModelProperty;
@@ -8,14 +8,14 @@ import lombok.experimental.FieldNameConstants;
 import javax.persistence.Table;
 
 /**
- * 后台用户
+ * c端用户
  * @author lch
  * @date 2020/4/12
  */
 @Data
 @FieldNameConstants
-@Table(name = "ManagerVO")
-public class ManagerVO extends BaseDO {
+@Table(name = "user")
+public class User extends BaseDO {
 
     @ApiModelProperty(value = "手机号码")
     private String phone;
@@ -32,11 +32,25 @@ public class ManagerVO extends BaseDO {
     @ApiModelProperty(value = "用户邮箱")
     private String email;
 
-    @ApiModelProperty(value = "部门Id")
-    private Long departmentId;
+    @ApiModelProperty(value = "省code")
+    private Long provinceCode;
+
+    @ApiModelProperty(value = "省名称")
+    private String provinceName;
+
+    @ApiModelProperty(value = "市code")
+    private Long cityCode;
+
+    @ApiModelProperty(value = "市名称")
+    private String cityName;
+
+    @ApiModelProperty(value = "区code")
+    private Long areaCode;
+
+    @ApiModelProperty(value = "区名称")
+    private String areaName;
 
     @ApiModelProperty(value = "删除标记")
     private Integer deleteFlag;
-
 
 }

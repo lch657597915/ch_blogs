@@ -1,6 +1,7 @@
 package com.ch.cb_user.pojo.domain.manager;
 
 import com.ch.cb_common.base.pojo.domain.BaseDO;
+import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
 import lombok.experimental.FieldNameConstants;
 
@@ -16,40 +17,24 @@ import javax.persistence.Table;
 @Table(name = "manager")
 public class Manager extends BaseDO {
 
-    /**
-     * 手机号码
-     */
+    @ApiModelProperty(value = "手机号码")
     private String phone;
 
-    /**
-     * 用户姓名
-     */
+    @ApiModelProperty(value = "用户姓名")
     private String name;
 
-    /**
-     * 登录密码
-     */
+    @ApiModelProperty(value = "登录密码")
     private String password;
 
-    /**
-     * 密码盐
-     */
+    @ApiModelProperty(value = "密码盐")
     private String salt;
 
-    /**
-     * 用户邮箱
-     */
+    @ApiModelProperty(value = "用户邮箱")
     private String email;
 
-    /**
-     * 部门Id
-     */
+    @ApiModelProperty(value = "部门Id")
     private Long departmentId;
 
-    /**
-     * 删除标记
-     * @author lch
-     * @date 2020/4/12
-     */
+    @ApiModelProperty(value = "删除标记")
     private Integer deleteFlag;
 }
